@@ -222,7 +222,7 @@ function tax(){
 	document.getElementById('net2').innerHTML = 'รายได้สุทธิสำหรับคิดภาษี ' + Number(net2.toFixed(2)).toLocaleString() + ' บาท'; 
 	document.getElementById('otherIncome').innerHTML = 'รายได้พึงประเมิน<br>' + Number(otherIncome.toFixed(2)).toLocaleString() + ' บาท';
 	if((t-p-dc-p2)<0){document.getElementById('tax').innerHTML = 'ได้รับเงินภาษีคืน<br>' + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + ' บาท';}
-	else{document.getElementById('tax').innerHTML = 'ภาษีที่ต้องชำระ<br>' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท';}
+	else{document.getElementById('tax').innerHTML = '<b>ภาษีที่ต้องชำระ<br>' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท</b>';}
 
 
 }
