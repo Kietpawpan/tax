@@ -120,6 +120,12 @@ select{
 <label for='gbk'>ส่ง กบข.</label><br/>
 <input type="text" id='gbk'/><br/>
 
+<label for='ins'>เบี้ยประกันชีวิต</label><br/>
+<input type="text" id='ins'/><br/>
+
+<label for='h'>เบี้ยประกันสุขภาพ</label><br/>
+<input type="text" id='h'/><br/>
+
 <label for='dr'>ดอกเบี้ย</label><br/>
 <input type='text' id='dr'/><br/>
 
@@ -183,19 +189,30 @@ function tax(){
 	var g = getNumber(document.getElementById('gbk').value);
 	var p2 = getNumber(document.getElementById('paid2').value);
 	var m = getNumber(document.getElementById('m').value);
+	var ins = getNumber(document.getElementById('ins').value);
+	var h = getNumber(document.getElementById('h').value);
 	
 	var gbk='';
 	if(g>500000){gbk=500000;}
 	else{gbk=g;}
+
       var ex = ''; //50% of revenue, max 100000
       if((r/2)>100000){ex=100000;}
       else{ex=r/2;}
+
+	var health='';
+	if(h>25000){health=25000;}
+	else{health=h;}
+
+	var insure ='';
+	if((ins + health) > 100000){insure=100000-health;}
+	else{insure=ins;}
 	var otherIncome = m + d + dc + dr; // stock
 	var r1r ='';
 	if(r1>10000){r1r=10000;} // กองทุนสำรองเลี้ยงชีพลดหย่อนได้ 10000 
 	else{r1r=r1;}
 	var reduce = r1r +r2+r3+r4+r5; // รายการลดหย่อนทั่วไป บิดา มารดา บุตร ตน ช๊อปดี กองทุน
-	var netIncome = r+otherIncome-ex-r1-gbk; // หักค่าจำเป็น 10000 และที่ส่งกองทุน
+	var netIncome = r+otherIncome-ex-r1-gbk-insure-health; // หักค่าจำเป็น 10000 และที่ส่งกองทุน
 	var net1 = netIncome - reduce; // รายได้สุทธิ หักลดหย่อน
 	var edu = ''; // ลดพิเศษการศึกษา 2 เท่าที่สนับสนุน แต่ไม่เกิน 20% รายได้สุทธิ
 	if(e0*2>net1*0.1 && net1>0){edu = net1*0.1;}
