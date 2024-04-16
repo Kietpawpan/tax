@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+	<link rel="stylesheet" href="css/w3.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://raw.githubusercontent.com/Kietpawpan/jTechTEXAS/main/js/filestack.min.js"></script>
+
+
+
+    <title>jTech Tax</title>
+</head>
+
+<style>
+.w3-btn {
+	margin-bottom:10px;
+	margin-left:10px;
+}
+h4{
+	font-family: "Orbitron", sans-serif;
+	color:;
+
+}
+input{
+	margin-bottom:15px;
+	margin-left:10px;
+	width:95%;
+	border:none;
+	margin-right:10px;
+	background-color:#c3c2ab;
+	outline:none;
+	font-family:"Orbitron";
+}
+
+label{
+	margin-left:10px;
+}
+.box{
+ 	margin-top: 50px;
+	margin-left:50px;
+	width:90%;
+	background-color:#d8d8d8; /*light silver*/
+	border:none;
+	border-radius:5px;
+}
+.frame{
+	margin: 10px 10px 10px 0px;
+}
+
+.company{
+	margin-top:50px;
+	margin-bottom:150px;
+	text-align:center;
+	font-family:"Orbitron";
+	font-size:10px;
+	font-weight:bold;
+	color:burlywood;
+}
+body{
+	background-color:black;
+}
+div {
+	margin-left:10px;
+}
+
+.copyright{
+	margin:-32px 0px 50px 0px;
+	font-size:6px;
+	text-align:center;
+	font-family:"Orbitron";
+	color:silver;
+}
+a{
+	text-decoration:none;
+}
+select{
+	margin-bottom:15px;
+}
+</style>
+
+<title>TaxAI</title>
+
+<body>
+
+
+<div class='box'>
+<div class="w3-container w3-teal" style='width:100%;margin-left:0px;border-radius:3px;'>
+<center><h4>Check Tax&#8482;</h4></center></div>
+<div class='frame'>
+<div class='w3-wide'>
+<div class='copyright'>&copy; 2024 JTECH PROGRAMS
+</div>
+
+<div class='w3-container'>
+<label for='r'>ปีภาษี</label><span id='s'></span><br/>
+<select id='year' onchange="fill(this.value);">
+<option>เลือกปีภาษี</option>
+<option value='2566a'>2566a</option>
+<option value='2566b'>2566b</option>
+</select> <br/>
+</div>
+
+<div class='w3-container'>
+<label for='r'>เงินเดือนทั้งปี</label><span id='s'></span><br/>
+<input type="text" id='r' onkeyup="formatCurrency(this, '$ ');" /><br/>
+
+<label for='m'>เบี้ยประชุม</label><br/>
+<input type="text" id='m'/><br/>
+
+<label for='r1'>เงินนำส่งกองทุนสำรองเลี้ยงชีพ</label><br/>
+<input type="text" id='r1'/><br/>
+
+<label for='gbk'>เงินนำส่ง กบข.</label><br/>
+<input type="text" id='gbk'/><br/>
+
+<label for='dr'>ดอกเบี้ย</label><br/>
+<input type='text' id='dr'/><br/>
+
+<label for='d'>ปันผล</label><br/>
+<input type="text" id='d'/><br/>
+
+<label for='dc'>เครดิตปันผล</label><br/>
+<input type="text" id='dc'/><br/>
+
+<label for='r2'>ลดหย่อนบิดามารดา</label><br/>
+<input type="text" id='r2'/><br/>
+
+<label for='r3'>ลดหย่อนบุตร</label><br/>
+<input type="text" id='r3'/><br/>
+
+<label for='r4'>ลดหย่อนตนเอง</label><br/>
+<input type="text" id='r4'/><br/>
+
+<label for='r5'>ช๊อปดีมีคืน</label><br/>
+<input type="text" id='r5'/><br/>
+
+<label for='edu'>สนับสนุนการศึกษา</label><br/>
+<input type='text' id= 'edu'/><br/>
+
+<label for='donate'>บริจาค</label><br/>
+<input type='text' id='donate'/><br/>
+
+<label for='paid'>เงินเดือน หัก ณ ที่จ่าย</label><br/>
+<input type='text' id='paid'/><br/>
+
+<label for='paid2'>ปันผล หัก ณ ที่จ่าย</label><br/>
+<input type='text' id='paid2'/><br/>
+
+ <button class="w3-btn w3-blue w3-border w3-round-large" onclick='tax()'> TAX </button>
+
+<div id='netIncome'></div><br/>
+<div id='reduce'></div><br/>
+<div id='net1'></div><br/>
+<div id='e0'></div><br/>
+<div id='d0'></div><br/>
+<div id='net2'></div><br/>
+<div id='otherIncome'></div><br/>
+<div id='tax'></div>
+
+</div>
+<script>
+function tax(){
+	let nf = new Intl.NumberFormat('en-US');
+	var r = getNumber(document.getElementById('r').value);
+	var d = getNumber(document.getElementById('d').value);
+	var dc = getNumber(document.getElementById('dc').value);
+	var dr = getNumber(document.getElementById('dr').value);
+	var r1 = getNumber(document.getElementById('r1').value);
+	var r2 = getNumber(document.getElementById('r2').value);
+	var r3 = getNumber(document.getElementById('r3').value);
+	var r4 = getNumber(document.getElementById('r4').value);
+	var r5 = getNumber(document.getElementById('r5').value);
+	var e0 = getNumber(document.getElementById('edu').value);
+	var d0 = getNumber(document.getElementById('donate').value);
+	var p = getNumber(document.getElementById('paid').value);
+	var g = getNumber(document.getElementById('gbk').value);
+	var p2 = getNumber(document.getElementById('paid2').value);
+	var m = getNumber(document.getElementById('m').value);
+	
+	var gbk='';
+	if(g>500000){gbk=500000;}
+	else{gbk=g;}
+      var ex = ''; //50% of revenue, max 100000
+      if((r/2)>100000){ex=100000;}
+      else{ex=r/2;}
+	var otherIncome = m + d + dc + dr; // stock
+	var r1r ='';
+	if(r1>10000){r1r=10000;} // กองทุนสำรองเลี้ยงชีพลดหย่อนได้ 10000 
+	else{r1r=r1;}
+	var reduce = r1r +r2+r3+r4+r5; // รายการลดหย่อนทั่วไป บิดา มารดา บุตร ตน ช๊อปดี กองทุน
+	var netIncome = r+otherIncome-ex-r1-gbk; // หักค่าจำเป็น 10000 และที่ส่งกองทุน
+	var net1 = netIncome - reduce; // รายได้สุทธิ หักลดหย่อน
+	var edu = ''; // ลดพิเศษการศึกษา 2 เท่าที่สนับสนุน แต่ไม่เกิน 20% รายได้สุทธิ
+	if(e0*2>net1*0.1 && net1>0){edu = net1*0.1;}
+	else{edu=e0*2;}
+	var donate=''; // บริจาคตามที่จ่ายจริง แต่ไม่เกิน 10% รายได้สุทธิที่หักการศึกษาแล้ว
+	if(d0>(net1-edu)*0.1 && net1>0){donate=(net1-edu)*0.1;}
+	else{donate=d0;}
+     var net2 = net1 - edu - donate ; // รายได้สุทธิจริง ก่อนคำนวณภาษี
+     var i=net2;
+	var t='';
+	if(i<150000 || i==150000){t='0';}
+      else if(i<300000 || i==300000){t=i* 0.05;}
+	else if(i<500000 || i==500000){t=(150000*0.05)+((i-300000)*0.1);}
+	else if(i<750000 || i==750000){t=(150000*0.05)+(200000*0.1)+((i-500000)*0.15);}
+	else if(i<1000000 || i==1000000){t=(150000*0.05)+(200000*0.1)+(250000* 0.15)+((i-750000)*0.2);}
+	else if(i<2000000 || i==2000000){t=(150000*0.05)+(200000*0.1)+(250000* 0.15)+(250000*0.2)+((i-1000000)*0.25);}
+	else if(i<5000000 || i==5000000){t=(150000*0.05)+(200000*0.1)+(250000* 0.15)+(250000*0.2)+(1000000*0.25)+((i-2000000)*0.3);}
+	else if(i>5000000){t=(150000*0.05)+(200000*0.1)+(250000* 0.15)+(250000*0.2)+(1000000*0.25)+(3000000*0.3)+((i-5000000)*0.35);}
+
+	document.getElementById('netIncome').innerHTML = 'รายได้หักค่าใช้จ่าย ' + Number(netIncome.toFixed(2)).toLocaleString() + ' บาท'; //หัก 100000 กับกองทุน 
+	document.getElementById('reduce').innerHTML = 'ลดหย่อนส่วนตัว ' + Number(reduce.toFixed(2)).toLocaleString() + ' บาท'; //หักลดหย่อนพ่อแม่ลูก ช๊อปดี
+	document.getElementById('net1').innerHTML = 'คงเหลือ ' + Number(net1.toFixed(2)).toLocaleString() + ' บาท'; 
+	document.getElementById('e0').innerHTML = 'ลดหย่อนการศึกษา ' + Number(edu.toFixed(2)).toLocaleString() + ' บาท';	document.getElementById('d0').innerHTML = 'ลดหย่อนบริจาค ' + Number(donate.toFixed(2)).toLocaleString() + ' บาท'; 
+	document.getElementById('net2').innerHTML = 'รายได้สุทธิสำหรับคิดภาษี ' + Number(net2.toFixed(2)).toLocaleString() + ' บาท'; 
+	document.getElementById('otherIncome').innerHTML = 'รายได้พึงประเมิน ' + Number(otherIncome.toFixed(2)).toLocaleString() + ' บาท';
+	if((t-p-dc-p2)<0){document.getElementById('tax').innerHTML = 'ได้รับเงินภาษีคืน ' + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + ' บาท';}
+	else{document.getElementById('tax').innerHTML = 'ภาษีที่ต้องชำระ ' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท';}
+
+
+}
+
+function fill(value){
+	var year = value;
+	if(year=="2566a"){
+	document.getElementById('gbk').value='';
+	document.getElementById('dr').value='';
+	document.getElementById('d').value='';
+	document.getElementById('dc').value='';
+	document.getElementById('r').value='980,940';
+	document.getElementById('m').value='72,000';
+	document.getElementById('r1').value='136,691';
+	document.getElementById('r2').value='60,000';
+	document.getElementById('r3').value='';
+	document.getElementById('r5').value='40,000';
+	document.getElementById('r4').value='60,000';
+	document.getElementById('donate').value='5,000';
+	document.getElementById('paid').value='7,500';}
+
+	else if(year=="2566b"){
+	document.getElementById('m').value='';
+	document.getElementById('r').value='650,370';
+	document.getElementById('gbk').value='18,251';
+	document.getElementById('dr').value='24';
+	document.getElementById('d').value='22,129';
+	document.getElementById('dc').value='5,368';
+	document.getElementById('r3').value='30,000';
+	document.getElementById('r4').value='60,000';
+	document.getElementById('r5').value='36,564';
+	document.getElementById('r2').value='';
+	document.getElementById('paid').value='24,711';
+	document.getElementById('paid2').value='2,147';
+	document.getElementById('donate').value='';
+
+}
+}
+
+</script>
+
+</div>
+
+</div>
+<!--end frame-->
+
+</div>
+<!--end box-->
+
+<div class='company'><a href='policy.html'>Privacy Policy</a> | <a href='terms.html'>Terms of Service</a></div> 
+
+<script>
+// input with comma separator
+
+
+function updateTextView(_obj){
+  var num = getNumber(_obj.val());
+  if(num==0){
+    _obj.val('');
+  }else{
+    _obj.val(num.toLocaleString());
+  }
+}
+function getNumber(_str){
+  var arr = _str.split('');
+  var out = new Array();
+  for(var cnt=0;cnt<arr.length;cnt++){
+    if(isNaN(arr[cnt])==false){
+      out.push(arr[cnt]);
+    }
+  }
+  return Number(out.join(''));
+}
+$(document).ready(function(){
+  $('input[type=text]').on('keyup',function(){
+    updateTextView($(this));
+  });
+});
+
+</script>
+
+
+</body>
+</html>
