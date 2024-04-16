@@ -42,8 +42,8 @@ label{
 }
 .box{
  	margin-top: 50px;
-	margin-left:50px;
-	width:90%;
+	margin-left: 0px;
+	width:100%;
 	background-color:#d8d8d8; /*light silver*/
 	border:none;
 	border-radius:5px;
@@ -63,6 +63,8 @@ label{
 }
 body{
 	background-color:black;
+	font-weight: bold;
+	font-size: 18px;
 }
 div {
 	margin-left:10px;
@@ -112,10 +114,10 @@ select{
 <label for='m'>เบี้ยประชุม</label><br/>
 <input type="text" id='m'/><br/>
 
-<label for='r1'>เงินนำส่งกองทุนสำรองเลี้ยงชีพ</label><br/>
+<label for='r1'>ส่งกองทุนสำรองเลี้ยงชีพ</label><br/>
 <input type="text" id='r1'/><br/>
 
-<label for='gbk'>เงินนำส่ง กบข.</label><br/>
+<label for='gbk'>ส่ง กบข.</label><br/>
 <input type="text" id='gbk'/><br/>
 
 <label for='dr'>ดอกเบี้ย</label><br/>
@@ -213,14 +215,14 @@ function tax(){
 	else if(i<5000000 || i==5000000){t=(150000*0.05)+(200000*0.1)+(250000* 0.15)+(250000*0.2)+(1000000*0.25)+((i-2000000)*0.3);}
 	else if(i>5000000){t=(150000*0.05)+(200000*0.1)+(250000* 0.15)+(250000*0.2)+(1000000*0.25)+(3000000*0.3)+((i-5000000)*0.35);}
 
-	document.getElementById('netIncome').innerHTML = 'รายได้หักค่าใช้จ่าย ' + Number(netIncome.toFixed(2)).toLocaleString() + ' บาท'; //หัก 100000 กับกองทุน 
-	document.getElementById('reduce').innerHTML = 'ลดหย่อนส่วนตัว ' + Number(reduce.toFixed(2)).toLocaleString() + ' บาท'; //หักลดหย่อนพ่อแม่ลูก ช๊อปดี
-	document.getElementById('net1').innerHTML = 'คงเหลือ ' + Number(net1.toFixed(2)).toLocaleString() + ' บาท'; 
-	document.getElementById('e0').innerHTML = 'ลดหย่อนการศึกษา ' + Number(edu.toFixed(2)).toLocaleString() + ' บาท';	document.getElementById('d0').innerHTML = 'ลดหย่อนบริจาค ' + Number(donate.toFixed(2)).toLocaleString() + ' บาท'; 
+	document.getElementById('netIncome').innerHTML = 'รายได้หักค่าใช้จ่าย<br>' + Number(netIncome.toFixed(2)).toLocaleString() + ' บาท'; //หัก 100000 กับกองทุน 
+	document.getElementById('reduce').innerHTML = 'ลดหย่อนส่วนตัว<br>' + Number(reduce.toFixed(2)).toLocaleString() + ' บาท'; //หักลดหย่อนพ่อแม่ลูก ช๊อปดี
+	document.getElementById('net1').innerHTML = 'คงเหลือ<br>' + Number(net1.toFixed(2)).toLocaleString() + ' บาท'; 
+	document.getElementById('e0').innerHTML = 'ลดหย่อนการศึกษา<br>' + Number(edu.toFixed(2)).toLocaleString() + ' บาท';	document.getElementById('d0').innerHTML = 'ลดหย่อนบริจาค ' + Number(donate.toFixed(2)).toLocaleString() + ' บาท'; 
 	document.getElementById('net2').innerHTML = 'รายได้สุทธิสำหรับคิดภาษี ' + Number(net2.toFixed(2)).toLocaleString() + ' บาท'; 
-	document.getElementById('otherIncome').innerHTML = 'รายได้พึงประเมิน ' + Number(otherIncome.toFixed(2)).toLocaleString() + ' บาท';
-	if((t-p-dc-p2)<0){document.getElementById('tax').innerHTML = 'ได้รับเงินภาษีคืน ' + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + ' บาท';}
-	else{document.getElementById('tax').innerHTML = 'ภาษีที่ต้องชำระ ' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท';}
+	document.getElementById('otherIncome').innerHTML = 'รายได้พึงประเมิน<br>' + Number(otherIncome.toFixed(2)).toLocaleString() + ' บาท';
+	if((t-p-dc-p2)<0){document.getElementById('tax').innerHTML = 'ได้รับเงินภาษีคืน<br>' + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + ' บาท';}
+	else{document.getElementById('tax').innerHTML = 'ภาษีที่ต้องชำระ<br>' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท';}
 
 
 }
