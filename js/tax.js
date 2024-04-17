@@ -101,7 +101,22 @@ function fill(value){
 	document.getElementById('paid').value='24,711';
 	document.getElementById('paid2').value='2,147';
 	document.getElementById('donate').value='';
-	document.getElementById('r1').value='';
+	document.getElementById('r1').value='';}
 
-}
+	else if(year=="reset"){
+	document.getElementById('m').value='';
+	document.getElementById('r').value='';
+	document.getElementById('gbk').value='';
+	document.getElementById('dr').value='';
+	document.getElementById('d').value='';
+	document.getElementById('dc').value='';
+	document.getElementById('r3').value='';
+	document.getElementById('r4').value='';
+	document.getElementById('r5').value='';
+	document.getElementById('r2').value='';
+	document.getElementById('paid').value='';
+	document.getElementById('paid2').value='';
+	document.getElementById('donate').value='';
+	document.getElementById('r1').value='';}
+
 }
