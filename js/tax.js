@@ -120,6 +120,12 @@ function fill(value){
 	document.getElementById('paid').value='';
 	document.getElementById('paid2').value='';
 	document.getElementById('donate').value='';
-	document.getElementById('r1').value='';}
-
+	document.getElementById('r1').value='';
+	document.getElementById('netIncome').innerHTML = ''; 
+	document.getElementById('reduce').innerHTML = ''
+	document.getElementById('net1').innerHTML = ''; 
+	document.getElementById('e0').innerHTML = ''; 
+	document.getElementById('net2').innerHTML = ''; 
+	document.getElementById('otherIncome').innerHTML = '';
+	document.getElementById('tax').innerHTML = '';}
 }
