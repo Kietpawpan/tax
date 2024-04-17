@@ -1,3 +1,6 @@
+/* Copyright (c) 2024 JTECH PROGRAMS (Montri Kiatphaophan)
+   v1.0.0 | April 17, 2024 | MIT License */
+
 function tax(){
 	let nf = new Intl.NumberFormat('en-US');
 	var r = getNumber(document.getElementById('r').value);
