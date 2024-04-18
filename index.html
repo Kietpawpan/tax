@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!Copyright (c) 2024 Montri Kiatphaophan | MIT LIcense>
 
 <html>
 <head>
@@ -14,7 +15,7 @@
 
 
 
-    <title>jTech Tax</title>
+<title>Check Tax</title>
 </head>
 
 <title>TaxAI</title>
@@ -30,7 +31,7 @@
 <div class='copyright'>&copy; 2024 JTECH PROGRAMS</div>
 </div>
 
-<div class='w3-container'>
+<div class='w3-container' style=“width:80%;">
 <label for='r'>ชุดข้อมูล</label><span id='s'></span><br/>
 <select id='year' onchange="fill(this.value);">
 <option>เลือกตัวอย่าง</option>
@@ -41,58 +42,58 @@
 </div>
 
 <div class='w3-container'>
-<label for='r'>เงินเดือนทั้งปี</label><span id='s'></span><br/>
-<input type="text" id='r' onkeyup="formatCurrency(this, '$ ');" /><br/>
+<label for='r'>เงินเดือนทั้งปี</label> <span id='bpm'></span><br/>
+<input type="text" id='r'  class="number-separator" oninput="bpm(this.value);" /><br/>
 
 <label for='m'>เบี้ยประชุม</label><br/>
-<input type="text" id='m'/><br/>
+<input class="number-separator" type="text" id='m'/><br/>
 
 <label for='r1'>ส่งกองทุนสำรองเลี้ยงชีพ</label><br/>
-<input type="text" id='r1'/><br/>
+<input class="number-separator" type="text" id='r1'/><br/>
 
 <label for='gbk'>ส่ง กบข.</label><br/>
-<input type="text" id='gbk'/><br/>
+<input class="number-separator"  type="text" id='gbk'/><br/>
 
 <label for='ins'>เบี้ยประกันชีวิต</label><br/>
-<input type="text" id='ins'/><br/>
+<input class="number-separator"  type="text" id='ins'/><br/>
 
 <label for='h'>เบี้ยประกันสุขภาพ</label><br/>
-<input type="text" id='h'/><br/>
+<input class="number-separator" type="text" id='h'/><br/>
 
 <label for='dr'>ดอกเบี้ย</label><br/>
-<input type='text' id='dr'/><br/>
+<input class="number-separator" type='text' id='dr'/><br/>
 
 <label for='d'>ปันผล</label><br/>
-<input type="text" id='d'/><br/>
+<input class="number-separator" type="text" id='d'/><br/>
 
 <label for='dc'>เครดิตปันผล</label><br/>
-<input type="text" id='dc'/><br/>
+<input class="number-separator" type="text" id='dc'/><br/>
 
 <label for='r2'>ลดหย่อนบิดามารดา</label><br/>
-<input type="text" id='r2'/><br/>
+<input class="number-separator" type="text" id='r2'/><br/>
 
 <label for='r3'>ลดหย่อนบุตร</label><br/>
-<input type="text" id='r3'/><br/>
+<input class="number-separator" type="text" id='r3'/><br/>
 
 <label for='r4'>ลดหย่อนตนเอง</label><br/>
-<input type="text" id='r4'/><br/>
+<input class="number-separator" type="text" id='r4'/><br/>
 
 <label for='r5'>ช๊อปดีมีคืน</label><br/>
-<input type="text" id='r5'/><br/>
+<input class="number-separator" type="text" id='r5'/><br/>
 
 <label for='edu'>สนับสนุนการศึกษา</label><br/>
-<input type='text' id= 'edu'/><br/>
+<input class="number-separator" type='text' id= 'edu'/><br/>
 
 <label for='donate'>บริจาค</label><br/>
-<input type='text' id='donate'/><br/>
+<input class="number-separator" type='text' id='donate'/><br/>
 
 <label for='paid'>เงินเดือน หัก ณ ที่จ่าย</label><br/>
-<input type='text' id='paid'/><br/>
+<input class="number-separator" type='text' id='paid'/><br/>
 
 <label for='paid2'>ปันผล หัก ณ ที่จ่าย</label><br/>
-<input type='text' id='paid2'/><br/>
+<input class="number-separator" type='text' id='paid2'/><br/>
 
- <button class="w3-btn w3-blue w3-border w3-round-large" onclick='tax()'> TAX </button>
+ <button class="w3-btn w3-blue w3-border w3-round-large" onclick='tax()'> CHECK TAX </button>
 
 <div id='netIncome'></div><br/>
 <div id='reduce'></div><br/>
@@ -115,34 +116,47 @@
 <div class='company'><a href='policy.html'>Privacy Policy</a> | <a href='terms.html'>Terms of Service</a></div> 
 
 <script>
-// input with comma separator
-
-
-function updateTextView(_obj){
-  var num = getNumber(_obj.val());
-  if(num==0){
-    _obj.val('');
-  }else{
-    _obj.val(num.toLocaleString());
-  }
-}
 function getNumber(_str){
   var arr = _str.split('');
   var out = new Array();
   for(var cnt=0;cnt<arr.length;cnt++){
-    if(isNaN(arr[cnt])==false){
+    if(isNaN(arr[cnt])==false || arr[cnt]=='.'){
       out.push(arr[cnt]);
     }
   }
   return Number(out.join(''));
 }
-$(document).ready(function(){
-  $('input[type=text]').on('keyup',function(){
-    updateTextView($(this));
-  });
-});
-
 </script>
+
+  <script src="easy-number-separator.js"></script>
+
+  <script>
+    easyNumberSeparator({
+      selector: '.number-separator',
+      separator: ',',
+      decimalSeparator: '.',
+      resultInput: '#result_input',
+    })
+  </script>
+
+<script>
+
+function bpm(value){
+	var text2 = value;
+       var arr2 = text2.split('');
+  	var out2 = new Array();
+  	for(var cnt2=0;cnt2<arr2.length;cnt2++){
+    	if(isNaN(arr2[cnt2])==false || arr2[cnt2]=='.'){
+      	out2.push(arr2[cnt2]);}}
+  	var m = Number(out2.join(''))/12;
+	document.getElementById('bpm').innerHTML= "<font size='-1'>(เฉลี่ยเดือนละ " + getNumber(m.toFixed(0)).toLocaleString() + ' บาท)</font>';
+
+}
+
+
+
+  </script>
+
 
 
 </body>
