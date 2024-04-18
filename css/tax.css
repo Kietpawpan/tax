@@ -2,18 +2,20 @@
 	margin-bottom:10px;
 	margin-left:10px;
 }
+
+
+
 h3{
 	font-family: "Orbitron", sans-serif;
 	color:;
 
 }
-input{
+
+.number-separator{
 	margin-bottom:15px;
 	margin-left:10px;
-	margin-right:10px;
-	width:300px;
+	width:80%;
 	border:none;
-	margin-right:10px;
 	background-color:#c3c2ab;
 	outline:none;
 	font-family:"Orbitron";
@@ -48,9 +50,7 @@ body{
 	background-color:black;
 	font-size: 25px;
 }
-div {
-	margin-left:10px;
-}
+
 
 .copyright{
 	margin:-25px 0px 50px 0px;
