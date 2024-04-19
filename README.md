@@ -4,4 +4,5 @@
 > [!NOTE]
 > ***key functions:** Number with comma and decimal point, auto updated input, autofill on selection 
 
-Check Tax<sup>TM</sup>
+## History
+Check Tax<sup>TM</sup> is devloped for my personal use in 2567 B.E. The program was first called __Tax Calculator__.
