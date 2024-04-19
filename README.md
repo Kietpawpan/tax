@@ -25,8 +25,6 @@ It is hard to code the HTML input to  accept the number with comma and a decimal
       	out2.push(arr2[cnt2]);}}
   	var m = Number(out2.join(''))/12;
 	document.getElementById('bpm').innerHTML= "(เดือนละ " + getNumber(m.toFixed(0)).toLocaleString() + ' บาท)';
-```
-
 
 [^1]: source code by amiryxe (https://www.cssscript.com/easy-number-separator/)
 
