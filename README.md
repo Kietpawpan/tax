@@ -15,5 +15,5 @@ It is hard to code the HTML input to  accept the number with comma and a decimal
 > - oninput="function(this.value);" is a much faster way to implement document.getElementById('id').value
 
 
-[^1] Indian programmer
+[^1]: Indian programmer
 
