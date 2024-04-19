@@ -69,9 +69,11 @@ function tax(){
 	document.getElementById('e0').innerHTML = 'ลดหย่อนการศึกษา<br>' + Number(edu.toFixed(2)).toLocaleString() + ' บาท';	document.getElementById('d0').innerHTML = 'ลดหย่อนบริจาค ' + Number(donate.toFixed(2)).toLocaleString() + ' บาท'; 
 	document.getElementById('net2').innerHTML = 'รายได้สุทธิสำหรับคิดภาษี ' + Number(net2.toFixed(2)).toLocaleString() + ' บาท'; 
 	document.getElementById('otherIncome').innerHTML = 'รายได้พึงประเมิน<br>' + Number(otherIncome.toFixed(2)).toLocaleString() + ' บาท';
-	if((t-p-dc-p2)<0){document.getElementById('tax').innerHTML = '<b>ได้รับเงินภาษีคืน<br>' + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + ' บาท</b><br><br>';}
-	else{document.getElementById('tax').innerHTML = '<b>ภาษีที่ต้องชำระ<br>' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท</b><br><br>';}
-
+	if((t-p-dc-p2)<0){
+		document.getElementById('tax').innerHTML = '<b>ได้รับเงินภาษีคืน<br>' + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + ' บาท</b><br><br>';
+		alert("ได้รับเงินภาษีคืน " + Number((-1*(t - p - dc - p2)).toFixed(2)).toLocaleString() + " บาท");}
+	else{document.getElementById('tax').innerHTML = '<b>ภาษีที่ต้องชำระ<br>' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท</b><br><br>';
+		alert('ภาษีที่ต้องชำระ ' + Number((t - p - dc - p2).toFixed(2)).toLocaleString() + ' บาท');}
 
 }
 
