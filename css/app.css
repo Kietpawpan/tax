@@ -90,6 +90,7 @@ nav{
 .personalInfo #name{
     color: #e9edef;
     margin-bottom: 4px;
+   font-family:"Orbitron";
 }
 
 .personalInfo #lastseen{
