@@ -89,7 +89,7 @@ select{
 </div>
 
 <div class='w3-container'>
-<label for='r'>เงินเดือน ค่าจ้าง บำนาญต่อปี</label> <span id='bpm'></span><br/>
+<label for='r'>เงินเดือน ฯลฯ </label> <span id='bpm'></span><br/>
 <input type="text" id='r'  class="number-separator" oninput="bpm(this.value);" /><br/>
 
 <label for='m'>เบี้ยประชุม</label><br/>
@@ -242,7 +242,7 @@ function bpm(value){
     	if(isNaN(arr2[cnt2])==false || arr2[cnt2]=='.'){
       	out2.push(arr2[cnt2]);}}
   	var m = Number(out2.join(''))/12;
-	document.getElementById('bpm').innerHTML= "<font size='-1'>(เฉลี่ยเดือนละ " + getNumber(m.toFixed(0)).toLocaleString() + ' บาท)</font>';
+	document.getElementById('bpm').innerHTML= "(เดือนละ " + getNumber(m.toFixed(0)).toLocaleString() + ' บาท)';
 
 }
 </script>
