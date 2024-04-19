@@ -9,6 +9,7 @@ Check Tax<sup>TM</sup> is devloped for my personal use in 2567 B.E. The program 
 
 ### Difficulties
 It is hard to code the HTML input to  accept the number with comma and a decimal point. 
+> Learn to learn from others
 > [!TIP]
 > - easy-number-separator.js[^1] is a cool script to have comma and decimal point in the input.
 > - toLocaleString() is a useful function but make sure the input variable is a number.
