@@ -3,3 +3,5 @@
 
 > [!NOTE]
 > ***key functions:** Number with comma and decimal point, auto updated input, autofill on selection 
+
+Check Tax<sup>TM</sup>
